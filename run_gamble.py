@@ -123,6 +123,7 @@ while True:
 for i in range(len(df_tr)):
     trial(i, win, df_tr, clk, tables, buttons, txt_time, myMouse=myMouse, time_feedback=True)
     core.wait(0.5)
+txt.pos = (-w/4, 0)
 txt.text = '按【空格键】进入正式实验'
 txt.draw()
 win.flip()
@@ -130,7 +131,6 @@ key = event.waitKeys(keyList=['space', 'escape'])
 # trial
 timeout_trial = []
 timeout_marker = np.zeros(len(df))
-txt.pos = (0, 0)
 for i in range(len(df)):
     result = trial(i, win, df, clk, tables, buttons, txt_time, myMouse=myMouse)
     print(result)

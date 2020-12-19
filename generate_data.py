@@ -104,7 +104,7 @@ def generate_train(p=None,
     if p is None:
         p = [0.25, 0.5, 0.75]
     if x_pair is None:
-        x_pair = np.array([[100, 0], [800, 0], [300, 200]])
+        x_pair = np.array([[800, 0], [300, 200]])
     df = pd.DataFrame()
     if condition in ['expand', 'shrink']:
         df['p'] = np.repeat([0.25, 0.75], len(x_pair))

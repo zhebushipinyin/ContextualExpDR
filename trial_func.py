@@ -45,7 +45,8 @@ def trial(i, win, df, clk, tables, buttons, txt, myMouse=None, time_feedback=Fal
     t_bound = 20
     timeout = txt[0]
     time_txt = txt[1]
-    time_txt.pos = (0, win.size[1]*3/8)
+    if time_feedback:
+        time_txt.pos = (0, win.size[1]*3/8)
     result = {
         'inverse':inverse,
         'mirror':mirror
