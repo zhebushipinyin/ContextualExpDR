@@ -40,10 +40,10 @@ df['pix_w'] = w
 df['pix_h'] = h
 
 results = {
-    'id': [], 'first_upper': [], 'first_lower': [], 'second_upper': [], 'second_lower': [],
+    'id': [], 'first_upper': [], 'first_lower': [], 'upper': [], 'lower': [],
     'rt1': [], 'rt2': [], 'mirror': [], 'inverse': []
     }
-result_tr = {'id': [], 'rt': [], 'first_upper': [], 'first_lower': [], 'second_upper': [], 'second_lower': []}
+result_tr = {'id': [], 'rt': [], 'first_upper': [], 'first_lower': [], 'upper': [], 'lower': []}
 
 win = visual.Window(size=(w, h), fullscr=True, units='pix', color=[0, 0, 0])
 
@@ -159,7 +159,7 @@ for i in range(len(df)):
     if i in (np.array([1,2,3])*44-1):
         # timeout_trial
         for each in timeout_trial:
-            result = trial(each, win, df, clk, tables, buttons, text_timeout, myMouse=myMouse)
+            result = trial(each, win, df, clk, tables, buttons, txt_time, myMouse=myMouse)
             results['rt1'][each] = result['rt1']
             results['rt2'][each] = result['rt2']
             results['mirror'][each] = result['mirror']
@@ -168,6 +168,8 @@ for i in range(len(df)):
             results['first_upper'][each] = result['first_upper']
             results['lower'][each] = result['lower']
             results['upper'][each] = result['upper']
+            if result['upper'] == -1:
+                timeout_trial.append(each)
         timeout_trial = []
         txt.text = '请休息一下（20s后方可按空格键继续）'
         txt.draw()
