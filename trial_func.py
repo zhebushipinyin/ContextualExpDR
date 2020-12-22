@@ -59,6 +59,7 @@ def trial(i, win, df, clk, tables, buttons, txt, myMouse=None, time_feedback=Fal
     state = 'running'
     x1 = x
     y1 = y
+    click_flag = 0
     for flag in range(2):
         event.clearEvents()
         col = [0] * 2
@@ -80,6 +81,7 @@ def trial(i, win, df, clk, tables, buttons, txt, myMouse=None, time_feedback=Fal
                     result['lower'] = -1
                     result['rt1'] = t_bound
                     result['rt2'] = t_bound
+                    result['rt'] = -1
                 else:
                     result['upper'] = -1
                     result['lower'] = -1
@@ -97,6 +99,9 @@ def trial(i, win, df, clk, tables, buttons, txt, myMouse=None, time_feedback=Fal
                         if value[k][j] == 1:
                             table[k][j].dui.draw()
                         if myMouse.isPressedIn(table[k][j].shape) and value[k][j] == 0:
+                            if click_flag == 0:
+                                rt_think = clk.getTime()
+                                click_flag = 1
                             value[k] = [0] * 3
                             value[k][j] = 1
                             table[k][j].dui.draw()
@@ -157,6 +162,7 @@ def trial(i, win, df, clk, tables, buttons, txt, myMouse=None, time_feedback=Fal
                         result['first_upper']=x1
                         result['first_lower']=y1
                         result['rt1'] = rt
+                        result['rt'] = rt_think
                     else:
                         result['upper']=x1
                         result['lower']=y1

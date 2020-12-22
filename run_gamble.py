@@ -40,7 +40,7 @@ df['pix_w'] = w
 df['pix_h'] = h
 
 results = {
-    'id': [], 'first_upper': [], 'first_lower': [], 'upper': [], 'lower': [],
+    'id': [], 'first_upper': [], 'first_lower': [], 'upper': [], 'lower': [], 'rt': [],
     'rt1': [], 'rt2': [], 'mirror': [], 'inverse': []
     }
 result_tr = {'id': [], 'rt': [], 'first_upper': [], 'first_lower': [], 'upper': [], 'lower': []}
@@ -135,6 +135,7 @@ for i in range(len(df)):
     result = trial(i, win, df, clk, tables, buttons, txt_time, myMouse=myMouse)
     print(result)
     results['id'].append(i)
+    results['rt'].append(result['rt'])
     results['rt1'].append(result['rt1'])
     results['rt2'].append(result['rt2'])
     results['mirror'].append(result['mirror'])
@@ -144,7 +145,7 @@ for i in range(len(df)):
     results['lower'].append(result['lower'])
     results['upper'].append(result['upper'])
 
-    if (result['rt1']+result['rt2']<5.5) or (result['rt1']<2.5) or (result['rt2']<2.5):
+    if (result['rt1']+result['rt2']<5.5) or (result['rt1']<2.5) or (result['rt2']<2):
         txt.text = '反应过快！请认真反应'
         timeout_trial.append(i)
         timeout_marker[i] = -1
@@ -160,6 +161,7 @@ for i in range(len(df)):
         # timeout_trial
         for each in timeout_trial:
             result = trial(each, win, df, clk, tables, buttons, txt_time, myMouse=myMouse)
+            results['rt'][each] = result['rt']
             results['rt1'][each] = result['rt1']
             results['rt2'][each] = result['rt2']
             results['mirror'][each] = result['mirror']
@@ -171,7 +173,7 @@ for i in range(len(df)):
             if result['upper'] == -1:
                 timeout_trial.append(each)
         timeout_trial = []
-        txt.text = '请休息一下（20s后方可按空格键继续）'
+        txt.text = '休息一下（20s后可按空格键继续）'
         txt.draw()
         win.flip()
         core.wait(20)
@@ -186,6 +188,7 @@ df['age'] = age
 df['trial'] = results['id']
 df['mirror'] = results['mirror']
 df['inverse'] = results['inverse']
+df['rt'] = results['rt']
 df['rt1'] = results['rt1']
 df['rt2'] = results['rt2']
 df['first_lower'] = results['first_lower']
