@@ -65,19 +65,19 @@ for i in range(7):
         gou_pos[i][j] = ([int((x1 + x2) / 2), int((y1 + y2) / 2)])
 # 建立表格对象
 title_text = [u"抽奖券", u"选择抽奖券", u"选择固定金额", u"固定金额"]
-jq_head = Table(visual.TextStim(win, height=h / 36),
+jq_head = Table(visual.TextStim(win, height=h / 36, font='MicroSoft Yahei'),
                 visual.ShapeStim(win, lineColor=[0.8, 0.8, 0.8], lineWidth=2),
                 visual.ImageStim(win),
                 [[-2 * a, 4 * b], [-2 * a, 3 * b], [-a, 3 * b], [-a, 4 * b]])
 jq_head.txt.text = title_text[0]
-table_jq = Table(visual.TextStim(win, text='奖券', height= h / 25, bold=True),
+table_jq = Table(visual.TextStim(win, text='奖券', height= h / 25, bold=True, font='MicroSoft Yahei'),
                  visual.ShapeStim(win, lineColor=[0.8, 0.8, 0.8], lineWidth=2),
                  visual.ImageStim(win),
                  [[-2 * a, 3 * b], [-2 * a, -3 * b], [-a, -3 * b], [-a, 3 * b]])
 
 for m in range(7):
     for n in range(3):
-        table[m][n] = Table(visual.TextStim(win, height=h / 30, bold=True),
+        table[m][n] = Table(visual.TextStim(win, height=h / 30, bold=True, font='MicroSoft Yahei'),
                             visual.ShapeStim(win, lineColor=[0.8, 0.8, 0.8], lineWidth=2),
                             visual.ImageStim(win, image="img/gou.png", size=32 * h / 720),
                             card_pos[m][n])
@@ -86,14 +86,14 @@ for m in range(7):
             table[m][n].txt.height = h / 36
 tables = [jq_head, table_jq, table]
 # Confirm button
-ok = visual.TextStim(win, text=u"确认", pos=(0, -4.5 * b), height=h / 36)
+ok = visual.TextStim(win, text=u"确认", pos=(0, -4.5 * b), height=h / 36, font='MicroSoft Yahei')
 ok_shape = visual.ShapeStim(win, lineColor=[0.8, 0.8, 0.8], lineWidth=2)
 ok_shape.vertices = [[-0.5 * a, -5 * b], [-0.5 * a, -4 * b], [0.5 * a, -4 * b], [0.5 * a, -5 * b]]
 buttons = [ok, ok_shape]
 # 时间间隔
 t_trial = {'t_fix': 0.5}
 # 文本
-txt = visual.TextStim(win, height=64 * h / 720, pos=(-w/4, 0))
+txt = visual.TextStim(win, height=64 * h / 720, pos=(-w/4, 0), font='MicroSoft Yahei')
 text_timeout = visual.TextStim(win, height=64 * h / 720, color='red')
 txt_time = [text_timeout, txt]
 # 注视点
@@ -196,7 +196,7 @@ df['first_upper'] = results['first_upper']
 df['lower'] = results['lower']
 df['upper'] = results['upper']
 df['isTimeout'] = timeout_marker
-df.to_csv('exp_data\\%s_%s.csv' % (name, time.strftime("%y-%m-%d-%H-%M")))
+df.to_csv('exp_data/%s_%s.csv' % (name, time.strftime("%y-%m-%d-%H-%M")))
 
 core.wait(3)
 win.close()
