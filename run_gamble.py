@@ -94,7 +94,7 @@ buttons = [ok, ok_shape]
 t_trial = {'t_fix': 0.5}
 # 文本
 txt = visual.TextStim(win, height=64 * h / 720, pos=(-w/4, 0), font='MicroSoft Yahei')
-text_timeout = visual.TextStim(win, height=64 * h / 720, color='red')
+text_timeout = visual.TextStim(win, height=64 * h / 720, color='red', font='MicroSoft Yahei')
 txt_time = [text_timeout, txt]
 # 注视点
 fix = visual.ImageStim(win, image="img/fix.png", size=64 * h / 720)

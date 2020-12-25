@@ -106,8 +106,12 @@ def generate_train(p=None,
     if x_pair is None:
         x_pair = np.array([[800, 0], [300, 200]])
     df = pd.DataFrame()
-    if condition in ['expand', 'shrink']:
-        df['p'] = np.repeat([0.25, 0.75], len(x_pair))
+    if condition == 'expand':
+        df['p'] = np.repeat([0.4, 0.6], len(x_pair))
+        df['x1'] = np.tile(x_pair[:, 0], 2)
+        df['x2'] = np.tile(x_pair[:, 1], 2)
+    elif condition == 'shrink':
+        df['p'] = np.repeat([0.05, 0.95], len(x_pair))
         df['x1'] = np.tile(x_pair[:, 0], 2)
         df['x2'] = np.tile(x_pair[:, 1], 2)
     elif condition == 'large':
