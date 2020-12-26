@@ -157,7 +157,7 @@ for i in range(len(df)):
         timeout_marker[i] = 1
     core.wait(0.5)
 
-    if i in (np.array([1,2,3])*44-1):
+    if i in (np.array([1, 2, 3, 4])*44-1):
         # timeout_trial
         for each in timeout_trial:
             result = trial(each, win, df, clk, tables, buttons, txt_time, myMouse=myMouse)
@@ -172,12 +172,13 @@ for i in range(len(df)):
             results['upper'][each] = result['upper']
             if result['upper'] == -1:
                 timeout_trial.append(each)
-        timeout_trial = []
-        txt.text = '休息一下（20s后可按空格键继续）'
-        txt.draw()
-        win.flip()
-        core.wait(20)
-        key = event.waitKeys(keyList=['space', 'escape'])
+        if i !=4*44-1:
+            timeout_trial = []
+            txt.text = '休息一下（20s后可按空格键继续）'
+            txt.draw()
+            win.flip()
+            core.wait(20)
+            key = event.waitKeys(keyList=['space', 'escape'])
 
 txt.text = "本试次结束，请呼叫主试"
 txt.draw()

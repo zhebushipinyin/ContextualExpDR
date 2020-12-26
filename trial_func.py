@@ -139,7 +139,7 @@ def trial(i, win, df, clk, tables, buttons, txt, myMouse=None, time_feedback=Fal
                         break
                     j += 1
                 if check == now and point == 6:
-                    if flag==0 and (sum(check) in [0, 6]):
+                    if sum(check) in [0, 6]:
                         pass
                     else:
                         if buttons[1].contains(myMouse):
